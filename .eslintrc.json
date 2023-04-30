@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint-config-prettier"
+  ],
+  "settings": {
+  },
+  "rules": {
+    // Add your own rules here to override ones from the extended configs.
+  }
+}
