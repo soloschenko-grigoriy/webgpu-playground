@@ -1,12 +1,21 @@
-import { fail } from '../fail'
-
 export const getDevice = async (): Promise<GPUDevice> => {
-  const adapter = await navigator.gpu?.requestAdapter()
-  const device = await adapter?.requestDevice()
+  if (!navigator.gpu) {
+    throw new Error('this browser does not support WebGPU')
+  }
+
+  const adapter = await navigator.gpu.requestAdapter()
+  if (!adapter) {
+    throw new Error('this browser supports webgpu but it appears disabled')
+  }
+
+  const device = await adapter.requestDevice()
   if (!device) {
-    fail('need a browser that supports WebGPU')
     throw new Error('need a browser that supports WebGPU')
   }
+
+  device.lost.then((info) => {
+    throw new Error(`WebGPU device was lost: ${info.message}`)
+  })
 
   return device
 }
