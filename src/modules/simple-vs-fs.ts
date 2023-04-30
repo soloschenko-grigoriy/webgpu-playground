@@ -1,4 +1,4 @@
-export const getModule = (device: GPUDevice) =>
+export const getSimpleVSFSModule = (device: GPUDevice) =>
   device.createShaderModule({
     label: 'our hardcoded red triangle shaders',
     code: `

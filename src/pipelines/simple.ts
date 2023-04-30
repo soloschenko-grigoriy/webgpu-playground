@@ -1,4 +1,4 @@
-export const getPipeline = (device: GPUDevice, module: GPUShaderModule, format: GPUTextureFormat) =>
+export const getSimplePipeline = (device: GPUDevice, module: GPUShaderModule, format: GPUTextureFormat) =>
   device.createRenderPipeline({
     label: 'our hardcoded red triangle pipeline',
     layout: 'auto',

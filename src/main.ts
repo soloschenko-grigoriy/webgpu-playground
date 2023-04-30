@@ -1,7 +1,7 @@
 import { fail } from './fail'
-import { getModule } from './modules'
-import { getPipeline } from './pipelines'
-import { render } from './render'
+import { getDoublingComputeModule, getSimpleVSFSModule } from './modules'
+import { getSimpleComputePipeline, getSimplePipeline } from './pipelines'
+import { simpleComputeRender, simpleRender } from './renderers'
 
 export async function main() {
   const adapter = await navigator.gpu?.requestAdapter()
@@ -24,9 +24,8 @@ export async function main() {
     format,
   })
 
-  const pipeline = getPipeline(device, getModule(device), format)
-
-  render(context, device, pipeline)
+  simpleRender(context, device, getSimplePipeline(device, getSimpleVSFSModule(device), format))
+  simpleComputeRender(device, getSimpleComputePipeline(device, getDoublingComputeModule(device)))
 }
 
 main()

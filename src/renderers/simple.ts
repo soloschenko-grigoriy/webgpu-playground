@@ -1,4 +1,4 @@
-export const render = (context: GPUCanvasContext, device: GPUDevice, pipeline: GPURenderPipeline) => {
+export const simpleRender = (context: GPUCanvasContext, device: GPUDevice, pipeline: GPURenderPipeline) => {
   const renderPassDescriptor: GPURenderPassDescriptor = {
     label: 'our basic canvas renderPass',
     colorAttachments: [
